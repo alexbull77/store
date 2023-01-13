@@ -1,0 +1,2 @@
+# store
+First Django Project
