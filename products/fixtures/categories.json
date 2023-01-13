@@ -1,0 +1,42 @@
+[
+    {
+        "model": "products.productcategory",
+        "pk": 1,
+        "fields": {
+            "name": "clothes",
+            "description": "just some random clothes can be stored in this category"
+        }
+    },
+    {
+        "model": "products.productcategory",
+        "pk": 2,
+        "fields": {
+            "name": "shoes",
+            "description": null
+        }
+    },
+    {
+        "model": "products.productcategory",
+        "pk": 3,
+        "fields": {
+            "name": "presents",
+            "description": ""
+        }
+    },
+    {
+        "model": "products.productcategory",
+        "pk": 4,
+        "fields": {
+            "name": "accessories",
+            "description": ""
+        }
+    },
+    {
+        "model": "products.productcategory",
+        "pk": 5,
+        "fields": {
+            "name": "new",
+            "description": ""
+        }
+    }
+]
