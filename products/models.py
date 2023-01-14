@@ -9,6 +9,10 @@ class ProductCategory(models.Model):
     def __str__(self) -> str:
         return f'{self.name}'
 
+    class Meta:
+        verbose_name = 'Product Category'
+        verbose_name_plural = 'Product Categories'
+
 
 class Product(models.Model):
     name = models.CharField(max_length=256)
@@ -22,7 +26,11 @@ class Product(models.Model):
     def __str__(self) -> str:
         return f'Product: {self.name} | Category: {self.category.name}'
 
-
+    class Meta:
+        verbose_name = 'Product'
+        verbose_name_plural = 'Products'
+        
+        
 class BasketQuerySet(models.QuerySet):
     def total_sum(self):
         return sum(basket.sum() for basket in self)
