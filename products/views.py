@@ -1,6 +1,7 @@
+import typing
+
 from django.contrib.auth.decorators import login_required
-from django.core.paginator import Paginator
-from django.shortcuts import HttpResponseRedirect, render
+from django.shortcuts import HttpResponseRedirect
 from django.views.generic.base import TemplateView
 from django.views.generic.list import ListView
 from products.models import Basket, Product, ProductCategory
@@ -36,21 +37,8 @@ class ProductsListView(ListView):
         return queryset.filter(category_id=category_id) if category_id else queryset
 
 
-# def products(request, category_id=None, page_number=1):
-#     products = Product.objects.filter(category_id=category_id) if category_id else Product.objects.all() 
-#     paginator = Paginator(products, per_page=2)
-#     page_obj = paginator.get_page(page_number)
-
-#     context = {
-#         'title': 'Store - Каталог',
-#         'categories': ProductCategory.objects.all(),
-#         'products': page_obj,
-#     }
-#     return render(request, 'products/products.html', context=context)
-
-
+# контролер действия / триггер
 @login_required
-# контролер действия
 def basket_add(request, product_id):
     product = Product.objects.get(pk=product_id)
     baskets = Basket.objects.filter(user=request.user, product=product)
