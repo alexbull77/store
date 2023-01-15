@@ -52,12 +52,14 @@ class UserRegistrationForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ['first_name', 'last_name', 'username', 'email', 'password1', 'password2']
+        fields = ['first_name', 'last_name', 'username',
+                  'email', 'password1', 'password2']
 
     def save(self, commit: bool = True) -> Any:
         user = super(UserRegistrationForm, self).save(commit=True)
         expiration = now() + timedelta(hours=48)
-        record = EmailVerification.objects.create(code=uuid.uuid4(), user=user, expiration=expiration)
+        record = EmailVerification.objects.create(
+            code=uuid.uuid4(), user=user, expiration=expiration)
         record.send_verification_email()
         return user
 
@@ -80,7 +82,7 @@ class UserProfileForm(UserChangeForm):
         'class': 'form-control py-4',
         'readonly': True
     }))
-    
+
     class Meta:
         model = User
         fields = ['first_name', 'last_name', 'image', 'username', 'email']
