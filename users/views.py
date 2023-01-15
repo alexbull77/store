@@ -1,10 +1,7 @@
 from common.views import TitleMixin
-from django.contrib import auth, messages
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib.auth.views import LoginView
 from django.contrib.messages.views import SuccessMessageMixin
-from django.shortcuts import HttpResponseRedirect, render
-from django.urls import reverse, reverse_lazy
+from django.urls import reverse_lazy
 from django.views.generic import UpdateView
 from django.views.generic.edit import CreateView
 from products.models import Basket
@@ -25,11 +22,6 @@ class UserLoginView(TitleMixin, LoginView):
     template_name = 'users/login.html'
     form_class = UserLoginForm
     title = 'Store - Авторизация'
-
-
-
-class UserLogoutView(LogoutView):
-    next_page = reverse_lazy('index')
 
 
 class UserProfileView(TitleMixin, UpdateView):
